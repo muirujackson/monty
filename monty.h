@@ -39,5 +39,9 @@ typedef struct instruction_s
 void push(stack_t **stack, int value);
 void pall(stack_t **stack, unsigned int line_number);
 void interpret_file(const char *filename, stack_t **stack);
+void swap(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+
 
 #endif

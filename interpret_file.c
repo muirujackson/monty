@@ -16,11 +16,10 @@ void interpret_file(const char *filename, stack_t **stack)
 	while (fgets(line, sizeof(line), file))
 	{
 		char *opcode = strtok(line, " \t\n");
-
+		printf("%s", opcode);
 		if (opcode != NULL && strcmp(opcode, "push") == 0)
 		{
 			char *value_str = strtok(NULL, " \t\n");
-			
 			if (value_str == NULL)
 			{
 				fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
@@ -41,8 +40,34 @@ void interpret_file(const char *filename, stack_t **stack)
 		}
 		else if (opcode != NULL && strcmp(opcode, "pall") == 0)
 		{
-			pall(stack, line_number);
+			pall(&stack, line_number);
 		}
+		else if (opcode != NULL)
+        {
+            instruction_t instructions[] = {
+                {"pint", pint},
+                {"pop", pop},
+                {"swap", swap},
+                /* Add more opcodes here if needed */
+            };
+
+            int i;
+            int num_instructions = sizeof(instructions) / sizeof(instruction_t);
+            for (i = 0; i < num_instructions; i++)
+            {
+                if (strcmp(opcode, instructions[i].opcode) == 0)
+                {
+                    instructions[i].f(&stack, line_number);
+                    break;
+                }
+            }
+
+            if (i == num_instructions)
+            {
+                fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+                exit(EXIT_FAILURE);
+            }
+        }
 		line_number++;
 	}
 	fclose(file);
