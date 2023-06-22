@@ -47,7 +47,8 @@ void interpret_file(const char *filename, stack_t **stack)
                 {"pint", pint},
                 {"pop", pop},
                 {"swap", swap},
-                /* Add more opcodes here if needed */
+                {"add", add},
+                {"nop", nop},
             };
 
             int i;
