@@ -1,5 +1,12 @@
 #include "monty.h"
 
+/**
+ * pop - push value
+ * @stack: pointer to a pointer
+ * @line_number: number
+ *
+ * Return: nothing
+ */
 void pop(stack_t **stack, unsigned int line_number)
 {
 	
