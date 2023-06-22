@@ -1,5 +1,12 @@
 #include "monty.h"
 
+/**
+ * interpret_file - push value
+ * @stack: pointer to a pointer
+ * @filename: number
+ *
+ * Return: nothing
+ */
 void interpret_file(const char *filename, stack_t **stack)
 {
 	char line[512];

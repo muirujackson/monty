@@ -1,5 +1,12 @@
 #include "monty.h"
 
+/**
+ * main - push value
+ * @argv: pointer to a pointer
+ * @argc: number
+ *
+ * Return: nothing
+ */
 int main(int argc, char **argv)
 {
 	stack_t *stack = NULL;
