@@ -1,5 +1,12 @@
 #include "monty.h"
 
+/**
+ * pint - push value
+ * @stack: pointer to a pointer
+ * @line_number: number
+ *
+ * Return: nothing
+ */
 void pint(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL)
