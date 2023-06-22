@@ -1,10 +1,11 @@
-i#include "monty.c"
+#include "monty.h"
 
-interpret_file(const char *filename)
+void interpret_file(const char *filename, stack_t **stack)
 {
 	char line[512];
 	unsigned int line_number = 1;
 	FILE *file = fopen(filename, "r");
+	int value;
 
 	if (file == NULL)
 	{
@@ -24,11 +25,11 @@ interpret_file(const char *filename)
 				exit(EXIT_FAILURE);
 			}
 
-			int value = atoi(value_str);
+			value = atoi(value_str);
 
 			if (value != 0 || strcmp(value_str, "0") == 0)
 			{
-				push(&stack, value);
+				push(stack, value);
 			}
 			else
 			{
@@ -36,35 +37,7 @@ interpret_file(const char *filename)
 				exit(EXIT_FAILURE);
 			}
 		}
-		else if (opcode != NULL)
-		{
-			/*instruction_t instructions[] = {
-			 *
-                {"pint", pint},
-                {"pop", pop},
-			                {"swap", swap},
-                {"add", add},
-                {"nop", nop},
-                 Add more opcodes here if needed
-            };
-
-            int i;
-            int num_instructions = sizeof(instructions) / sizeof(instruction_t);
-            for (i = 0; i < num_instructions; i++)
-            {
-                if (strcmp(opcode, instructions[i].opcode) == 0)
-                {
-                    instructions[i].f(&stack, line_number);
-                    break;
-                }
-            }
-
-            if (i == num_instructions)
-            {
-                fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
-                exit(EXIT_FAILURE);
-            } */
-		}
+		
 		line_number++;
 	}
 	fclose(file);
