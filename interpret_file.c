@@ -16,6 +16,7 @@ void interpret_file(const char *filename, stack_t **stack)
 	while (fgets(line, sizeof(line), file))
 	{
 		char *opcode = strtok(line, " \t\n");
+		
 		if (opcode != NULL && strcmp(opcode, "push") == 0)
 		{
 			char *value_str = strtok(NULL, " \t\n");
@@ -37,7 +38,10 @@ void interpret_file(const char *filename, stack_t **stack)
 				exit(EXIT_FAILURE);
 			}
 		}
-		
+		else if (opcode != NULL && strcmp(opcode, "pall") == 0)
+        {
+            pall(stack, line_number);
+        }
 		line_number++;
 	}
 	fclose(file);
