@@ -12,6 +12,6 @@ int main(int argc, char **argv)
 
 	interpret_file(argv[1], &stack);
 	/* free_stack(stack);*/
-	
-	return 0;
+
+	return (0);
 }
